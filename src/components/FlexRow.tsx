@@ -2,6 +2,7 @@ import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element
 import { useEffect, useRef } from "react";
 import invariant from "tiny-invariant";
 import Item from "../Item";
+import { renderItems } from "../utils/renderItems";
 
 const FlexRow = ({
 	id,
@@ -41,13 +42,7 @@ const FlexRow = ({
 			{nodes.length === 0 ? (
 				<div>Flex Row Items can be dropped here</div>
 			) : (
-				nodes.map((node: any) => {
-					return (
-						<Item key={node.id} id={node.id} name={node.name} canDrag={false}>
-							{node.name}
-						</Item>
-					);
-				})
+				renderItems(nodes)
 			)}
 		</div>
 	);
@@ -91,13 +86,7 @@ const FlexCol = ({
 			{nodes.length === 0 ? (
 				<div>Flex Column Items can be dropped here</div>
 			) : (
-				nodes.map((node: any) => {
-					return (
-						<Item key={node.id} id={node.id} name={node.name} canDrag={false}>
-							{node.name}
-						</Item>
-					);
-				})
+				renderItems(nodes)
 			)}
 		</div>
 	);

@@ -35,8 +35,8 @@ function App() {
 					...rootItems,
 				};
 				if (
-					location.current.dropTargets[0].data.name === "flexrow" ||
-					location.current.dropTargets[0].data.name === "flexcol"
+					location?.current?.dropTargets?.[0]?.data?.name === "flexrow" ||
+					location?.current?.dropTargets?.[0]?.data?.name === "flexcol"
 				) {
 					newRootItems.mainItems = newRootItems.mainItems.map((item: any) => {
 						if (location.current.dropTargets[0].data.id === item.id) {
@@ -47,6 +47,7 @@ function App() {
 									{
 										id: newId,
 										name: data.name,
+										nodes: [],
 									},
 								],
 							};

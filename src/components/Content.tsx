@@ -2,38 +2,7 @@ import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element
 import { useRef, useEffect } from "react";
 import invariant from "tiny-invariant";
 import Item from "../Item";
-import { FlexRow, FlexCol } from "./FlexRow";
-
-const renderItems = (items: any) => {
-	return items.mainItems.map((item: any) => {
-		switch (item.name) {
-			case "flexrow":
-				return (
-					<FlexRow
-						key={item.id}
-						id={item.id}
-						nodes={item.nodes}
-						name={item.name}
-					/>
-				);
-			case "flexcol":
-				return (
-					<FlexCol
-						key={item.id}
-						id={item.id}
-						nodes={item.nodes}
-						name={item.name}
-					/>
-				);
-			default:
-				return (
-					<Item key={item.id} id={item.id} name={item.name} canDrag={false}>
-						{item.name}
-					</Item>
-				);
-		}
-	});
-};
+import { renderItems } from "../utils/renderItems";
 
 const SideBar = () => {
 	return (
@@ -99,7 +68,7 @@ const Content = ({ droppedItems }: { droppedItems: any }) => {
 				style={{ width: "85%", padding: "10px", overflowY: "auto" }}
 			>
 				{droppedItems.mainItems.length > 0 ? (
-					renderItems(droppedItems)
+					renderItems(droppedItems.mainItems)
 				) : (
 					<p>
 						This is the main content area where you can add your primary
