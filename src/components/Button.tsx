@@ -12,9 +12,9 @@ const Button = ({
 			style={{
 				backgroundColor: "#008CBA",
 				color: "white",
-				padding: "5px",
-				border: "none",
-				borderRadius: "5px",
+				padding: "10px",
+				border: "soliid 2px black",
+				borderRadius: "10px",
 				cursor: "pointer",
 			}}
 			id={id}

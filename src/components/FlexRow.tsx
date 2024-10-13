@@ -1,44 +1,15 @@
-import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
-import { useEffect, useRef } from "react";
-import invariant from "tiny-invariant";
-import Item from "../Item";
 import { renderItems } from "../utils/renderItems";
+import useDroppable from "../hooks/useDroppable";
+import { flexBaseStyles } from "../styles/styles";
 
 const FlexRow = ({
 	id,
 	name,
 	nodes = [],
 }: { id: string; name: string; nodes: any }) => {
-	const ref = useRef(null);
-	useEffect(() => {
-		const element = ref.current;
-		invariant(element);
-		return dropTargetForElements({
-			element,
-			getData: () => {
-				return { id, name };
-			},
-		});
-	}, []);
+	const { ref } = useDroppable(id, name);
 	return (
-		<div
-			ref={ref}
-			style={{
-				display: "flex",
-				height: "100px",
-				flexDirection: "row",
-				flexWrap: "wrap",
-				justifyContent: "flex-start",
-				gap: "10px",
-				alignItems: "center",
-				padding: "10px",
-				border: "1px solid #ccc",
-				marginBottom: "10px",
-				backgroundColor: "slategrey",
-				color: "white",
-				textAlign: "center",
-			}}
-		>
+		<div ref={ref} style={flexBaseStyles}>
 			{nodes.length === 0 ? (
 				<div>Flex Row Items can be dropped here</div>
 			) : (
@@ -53,34 +24,13 @@ const FlexCol = ({
 	name,
 	nodes = [],
 }: { id: string; name: string; nodes: any }) => {
-	const ref = useRef(null);
-	useEffect(() => {
-		const element = ref.current;
-		invariant(element);
-		return dropTargetForElements({
-			element,
-			getData: () => {
-				return { id, name };
-			},
-		});
-	}, []);
+	const { ref } = useDroppable(id, name);
 	return (
 		<div
 			ref={ref}
 			style={{
-				display: "flex",
-				minHeight: "100px",
+				...flexBaseStyles,
 				flexDirection: "column",
-				flexWrap: "wrap",
-				gap: "10px",
-				justifyContent: "flex-start",
-				alignItems: "center",
-				padding: "10px",
-				border: "1px solid #ccc",
-				marginBottom: "10px",
-				backgroundColor: "slategrey",
-				color: "white",
-				textAlign: "center",
 			}}
 		>
 			{nodes.length === 0 ? (

@@ -1,7 +1,7 @@
 import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import { useRef, useEffect } from "react";
 import invariant from "tiny-invariant";
-import Item from "../Item";
+import Item from "./Item";
 import { renderItems } from "../utils/renderItems";
 
 const SideBar = () => {

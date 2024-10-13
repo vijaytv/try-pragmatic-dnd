@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import { FlexCol, FlexRow } from "../components/FlexRow";
 import Input from "../components/Input";
-import Item from "../Item";
+import Item from "../components/Item";
 
 const renderItems = (items: any) => {
 	return items.map((item: any) => {
