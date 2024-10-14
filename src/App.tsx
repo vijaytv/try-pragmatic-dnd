@@ -4,6 +4,7 @@ import { monitorForElements } from "@atlaskit/pragmatic-drag-and-drop/element/ad
 import "./App.css";
 import { flushSync } from "react-dom";
 import Content from "./components/Content";
+import { updateItem } from "./utils/treeUtils";
 const generateRandomId = () => {
 	return crypto.randomUUID();
 };
@@ -22,6 +23,11 @@ function App() {
 	const [rootItems, setRootItems] = useState<any>([]);
 	const handleSaveItem = (e: any) => {
 		console.log(e);
+		const updatedRootItems = updateItem(rootItems, e);
+		console.log(updatedRootItems);
+		flushSync(() => {
+			setRootItems(updatedRootItems);
+		});
 	};
 	useEffect(() => {
 		return monitorForElements({

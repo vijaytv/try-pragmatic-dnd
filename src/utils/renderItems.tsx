@@ -51,6 +51,7 @@ const renderItems = (items: any, onItemClicked: any) => {
 						key={item.id}
 						id={item.id}
 						name={item.name}
+						value={item.value}
 						onItemClicked={onItemClicked}
 					/>
 				);

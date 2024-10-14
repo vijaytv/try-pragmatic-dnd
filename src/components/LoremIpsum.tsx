@@ -1,8 +1,9 @@
 const LoremIpsum = ({
 	id,
 	name,
+	value = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc nec ultricies tincidunt, nunc nisl aliquet nunc",
 	onItemClicked,
-}: { id: string; name: string; onItemClicked: any }) => {
+}: { id: string; name: string; onItemClicked: any; value?: string }) => {
 	return (
 		// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 		<div
@@ -23,8 +24,7 @@ const LoremIpsum = ({
 				marginBottom: "5px",
 			}}
 		>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua.
+			{value}
 		</div>
 	);
 };

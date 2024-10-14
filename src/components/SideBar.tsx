@@ -22,7 +22,7 @@ const SideBar = ({
 				</li>
 				<li>
 					<Item id="cssgrid" name="cssgrid">
-						<div>CSS grid</div>
+						<div>CSS grid (3 col)</div>
 					</Item>
 				</li>
 				<li>
@@ -49,7 +49,7 @@ const SideBar = ({
 					</Item>
 				</li>
 				<li>
-					<Item id="loremipsum" name="loremipsum">
+					<Item id="loremipsum" name="loremipsum" value="Lorem ipsum">
 						<div>Lorem Ipsum</div>
 					</Item>
 				</li>

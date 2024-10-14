@@ -13,6 +13,7 @@ const Item = ({
 	children: ReactNode;
 	canDrag?: boolean;
 	onItemClicked: any;
+	value?: string;
 }) => {
 	const ref = useRef(null);
 	useEffect(() => {
