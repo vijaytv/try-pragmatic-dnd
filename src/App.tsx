@@ -19,9 +19,10 @@ const Header = () => {
 };
 
 function App() {
-	const [rootItems, setRootItems] = useState<any>({
-		mainItems: [],
-	});
+	const [rootItems, setRootItems] = useState<any>([]);
+	const handleSaveItem = (e: any) => {
+		console.log(e);
+	};
 	useEffect(() => {
 		return monitorForElements({
 			onDrop({ source, location }) {
@@ -31,14 +32,13 @@ function App() {
 				}
 				console.log(data, location.current.dropTargets[0]);
 				const newId = generateRandomId();
-				const newRootItems = {
-					...rootItems,
-				};
+				let newRootItems = [...rootItems];
 				if (
 					location?.current?.dropTargets?.[0]?.data?.name === "flexrow" ||
-					location?.current?.dropTargets?.[0]?.data?.name === "flexcol"
+					location?.current?.dropTargets?.[0]?.data?.name === "flexcol" ||
+					location?.current?.dropTargets?.[0]?.data?.name === "cssgrid"
 				) {
-					newRootItems.mainItems = newRootItems.mainItems.map((item: any) => {
+					newRootItems = newRootItems.map((item: any) => {
 						if (location.current.dropTargets[0].data.id === item.id) {
 							return {
 								...item,
@@ -55,8 +55,8 @@ function App() {
 						return item;
 					});
 				} else {
-					newRootItems.mainItems = [
-						...rootItems.mainItems,
+					newRootItems = [
+						...rootItems,
 						{
 							id: newId,
 							name: data.name,
@@ -75,7 +75,7 @@ function App() {
 	return (
 		<>
 			<Header />
-			<Content droppedItems={rootItems} />
+			<Content droppedItems={rootItems} handleSaveItem={handleSaveItem} />
 		</>
 	);
 }

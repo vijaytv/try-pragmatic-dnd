@@ -10,6 +10,6 @@ export const flexBaseStyles = {
 	padding: "5px",
 	border: "1px solid #ccc",
 	marginBottom: "10px",
-	backgroundColor: "slategrey",
+	backgroundColor: "#464c51",
 	color: "white",
 } as CSSProperties;

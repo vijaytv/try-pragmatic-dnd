@@ -6,7 +6,14 @@ const Item = ({
 	id,
 	name,
 	canDrag = true,
-}: { id: string; name: string; children: ReactNode; canDrag: boolean }) => {
+	onItemClicked,
+}: {
+	id: string;
+	name: string;
+	children: ReactNode;
+	canDrag?: boolean;
+	onItemClicked: any;
+}) => {
 	const ref = useRef(null);
 	useEffect(() => {
 		const element = ref.current;
@@ -20,15 +27,18 @@ const Item = ({
 		});
 	}, []);
 	return (
+		// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 		<div
 			style={{
 				border: "1px solid #ccc",
 				marginBottom: "10px",
-				backgroundColor: "slategrey",
+				backgroundColor: "#660033",
 				color: "white",
 				textAlign: "center",
+				cursor: "move",
 			}}
 			ref={ref}
+			onClick={onItemClicked}
 		>
 			{children}
 		</div>

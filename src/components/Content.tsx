@@ -1,55 +1,23 @@
 import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import invariant from "tiny-invariant";
-import Item from "./Item";
 import { renderItems } from "../utils/renderItems";
+import SideBar from "./SideBar";
 
-const SideBar = () => {
-	return (
-		<aside
-			style={{
-				width: "15%",
-				padding: "10px",
-				border: "1px solid #ccc",
-				height: "100%",
-				overflowY: "auto",
-			}}
-		>
-			<h2>Components</h2>
-			<ul style={{ listStyle: "none", padding: 0 }}>
-				<li>
-					<Item id="flexrow" name="flexrow">
-						<div>flex row</div>
-					</Item>
-				</li>
-				<li>
-					<Item id="flexcol" name="flexcol">
-						<div>flex col</div>
-					</Item>
-				</li>
-				<li>
-					<Item id="button" name="button">
-						<div>button</div>
-					</Item>
-				</li>
-				<li>
-					<Item id="input" name="input">
-						<div>input</div>
-					</Item>
-				</li>
-				<li>
-					<Item id="grid" name="grid">
-						<div>grid</div>
-					</Item>
-				</li>
-			</ul>
-		</aside>
-	);
-};
-
-const Content = ({ droppedItems }: { droppedItems: any }) => {
+const Content = ({
+	droppedItems,
+	handleSaveItem,
+}: { droppedItems: any; handleSaveItem: any }) => {
 	const ref = useRef(null);
-
+	const [lastItemClicked, setLastItemClicked] = useState<any>(null);
+	const handleClick = ({
+		id,
+		itemType,
+		name,
+	}: { id: string; itemType: string; name: string }) => {
+		console.log(id, itemType);
+		setLastItemClicked({ id, itemType, name });
+	};
 	useEffect(() => {
 		const element = ref.current;
 		invariant(element);
@@ -62,13 +30,13 @@ const Content = ({ droppedItems }: { droppedItems: any }) => {
 	}, []);
 	return (
 		<main style={{ display: "flex", height: "calc(100vh - 80px)" }}>
-			<SideBar />
+			<SideBar lastItemClicked={lastItemClicked} updateItem={handleSaveItem} />
 			<section
 				ref={ref}
 				style={{ width: "85%", padding: "10px", overflowY: "auto" }}
 			>
-				{droppedItems.mainItems.length > 0 ? (
-					renderItems(droppedItems.mainItems)
+				{droppedItems.length > 0 ? (
+					renderItems(droppedItems, handleClick)
 				) : (
 					<p>
 						This is the main content area where you can add your primary
